@@ -3,6 +3,8 @@
 */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
+
+
 body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
@@ -101,10 +103,16 @@ nav a:hover {
     box-shadow: 0 12px 30px rgba(0,0,0,0.15);
 }
 
-.product-card img {
-    width: 100%;
-    height: 300px; /* Увеличенная высота изображения */
-    object-fit: cover;
+.product-image {
+    width: 100%; /* Изображение будет занимать 100% ширины своего родительского блока (.product-card) */
+    height: 300px; /* Задаём фиксированную высоту для единообразия */
+    object-fit: cover; /* Это свойство обрезает изображение, чтобы оно полностью заполнило контейнер, сохраняя пропорции */
+    border-radius: 12px 12px 0 0; /* Скругление только верхних углов */
+    transition: transform 0.3s ease; /* Добавляем плавный эффект при наведении */
+}
+
+.product-card:hover .product-image {
+    transform: scale(1.05); /* При наведении на карточку, изображение немного увеличивается */
 }
 
 .product-card h2 {
@@ -154,16 +162,18 @@ nav a:hover {
     position: fixed;
     top: 0;
     right: 0;
-    width: 400px; /* Немного шире */
+    width: 90%; /* Используем процентную ширину, чтобы корзина подстраивалась под размер экрана */
+    max-width: 400px; /* Устанавливаем максимальную ширину для больших экранов */
     height: 100%;
     background-color: #f4f6f8;
     box-shadow: -6px 0 20px rgba(0,0,0,0.15);
     transform: translateX(100%);
-    transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Красивая анимация */
+    transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
     z-index: 1000;
-    padding: 2.5rem;
+    padding: 2.5rem; /* Внутренние отступы для всего содержимого */
     display: flex;
     flex-direction: column;
+    box-sizing: border-box; /* Это очень важное свойство! */
 }
 
 #cart-sidebar.visible {
